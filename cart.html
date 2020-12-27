@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>购物车</title>
+		<link rel="stylesheet" href="./css/shoppingcar.css">
+		<script src="./js/jquery-3.5.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/cart.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			function add_shoppingcar(btn) {
+				var tr = btn.parentNode.parentNode;
+				var tds = tr.getElementsByTagName("td");
+				var name = tds[0].innerHTML;
+				var price = tds[1].innerHTML;
+				var tbody = document.getElementById("goods");
+				var row = tbody.insertRow();
+				row.innerHTML = "<td>" + name + "</td>" +
+					"<td>" + price + "</td>" +
+					"<td align='center'>" +
+					"<input type='button' value='-' onclick='change(this,-1);' />" +
+					"<input type='text' id='num' size='1' readonly='readonly' value='1'/>" +
+					"<input type='button' value='+' onclick='change(this,+1);' />" +
+					"</td>" +
+					"<td>" + price + "</td>" +
+					"<td align='center'>" +
+					"<input type='button' value='X' onclick='del(this);'/>" +
+					"</td>";
+				total();
+			}
+
+			function del(obj) {
+				var tr = obj.parentNode.parentNode;
+				var tbody = tr.parentNode;
+				tbody.removeChild(tr);
+				total();
+			}
+
+			function total() {
+				var tbody = document.getElementById("goods");
+				var trs = tbody.getElementsByTagName("tr");
+				var sum = 0;
+				for(var i = 0; i < trs.length; i++) {
+					var tds = trs[i].getElementsByTagName("td");
+					var m = tds[3].innerHTML;
+					sum += parseFloat(m);
+				}
+				var total = document.getElementById("total");
+				total.innerHTML = sum;
+
+			}
+
+			function change(btn, n) {
+				var inputs = btn.parentNode.getElementsByTagName("input");
+				var amount = parseInt(inputs[1].value);
+				if(amount <= 1 && n < 0) {
+					return;
+				}
+				inputs[1].value = amount + n;
+				amount = inputs[1].value;
+				var tr = btn.parentNode.parentNode;
+				var tds = tr.getElementsByTagName("td");
+				var price = parseFloat(tds[1].innerHTML);
+				var m = amount * price;
+				tds[3].innerHTML = m;
+				total();
+			}
+		</script>
+
+		<style type="text/css">
+			h1 {
+				text-align: center;
+			}
+			
+			table {
+				margin: 0 auto;
+				width: 60%;
+				border: 2px solid #aaa;
+				border-collapse: collapse;
+			}
+			
+			table th,
+			table td {
+				border: 2px solid #aaa;
+				padding: 5px;
+			}
+		</style>
+
+		<style type="text/css">
+			.da {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.wx {
+				width: 100%;
+				margin-top: 50px;
+			}
+			
+			.wx ul {
+				width: 1226px;
+				height: 80px;
+				list-style: none;
+				margin: 0 auto;
+				border-bottom: 1px solid #e0e0e0;
+			}
+			
+			.wx ul li {
+				width: 242.72px;
+				height: 25px;
+				float: left;
+				text-align: center;
+				line-height: 25px;
+				cursor: pointer;
+				border-left: 1px solid #e0e0e0;
+			}
+			
+			ul li a {
+				text-decoration: none;
+				color: #3F3F3F;
+				font: 16px "微软雅黑";
+			}
+			
+			.col {
+				width: 1266px;
+				height: 249.8px;
+				margin: auto;
+				padding: 40px 0;
+			}
+			
+			.col-links {
+				width: 160px;
+				height: 114.6px;
+				float: left;
+			}
+			
+			dt {
+				width: 160px;
+				height: 16.8px;
+				line-height: 16.8px;
+				font: 14px "微软雅黑";
+				margin-left: 0px;
+				margin-bottom: 26px;
+			}
+			
+			dd {
+				width: 160px;
+				height: 17.6px;
+				margin-left: 0px;
+				margin-top: 10px;
+			}
+			
+			dd a {
+				height: 48px;
+				height: 13.6px;
+				line-height: 13.6px;
+				font: 12px "微软雅黑";
+				text-decoration: none;
+				color: #3F3F3F;
+			}
+			
+			a:hover {
+				color: cornflowerblue;
+			}
+			
+			.col-cen {
+				width: 252px;
+				height: 110.2px;
+				float: left;
+				text-align: center;
+			}
+			
+			.col-cen .phone {
+				font: 22px "微软雅黑";
+				color: #ff6700;
+				margin: 0px 0px 5px 0px;
+			}
+			
+			.col-cen .p {
+				font: 12px "微软雅黑";
+				margin: 0px 0px 5px 0px;
+			}
+			
+			.p:hover {
+				color: crimson;
+			}
+			
+			.col-cen a {
+				width: 120px;
+				height: 30px;
+			}
+			
+			.rg {
+				font: 12px "微软雅黑";
+				border: 1px solid red;
+				cursor: pointer;
+			}
+			
+			.rg:hover {
+				color: darkorange;
+			}
+			
+			.site {
+				width: 100%;
+				height: 102px;
+				border-bottom: 2px solid orange;
+			}
+			
+			.xiao {
+				width: 1226px;
+				height: 74px;
+				float: left;
+			}
+			
+			.site .site-gw {
+				float: left;
+				line-height: 48px;
+				margin-bottom: 0;
+				font-size: 28px;
+				margin-right: auto;
+				margin-left: auto;
+			}
+			
+			.site .link {
+				width: 34px;
+				height: 40px;
+				float: right;
+				padding: 0px 5px;
+				text-align: 40px;
+				margin-top: 38px;
+				cursor: pointer;
+			}
+			
+			.con {
+				width: 100%;
+				height: 1851px;
+				padding: 38px 0px;
+				background-color: #f5f5f5;
+			}
+			
+			.cat-wrap {
+				width: 1226px;
+				height: 1710px;
+				margin: 0px 126.6px;
+			}
+			
+			.cat-wrap .cat-top {
+				width: 668px;
+				height: 273px;
+				margin: 65px 0px 130px;
+				padding: 0px 0px 0px 558px;
+			}
+			
+			.cat-top .tip {
+				width: 668px;
+				height: 53.8px;
+				margin: 70px 0px 0px 0px;
+				font-size: 36px;
+				color: #929190;
+			}
+			
+			.cat-top .desc {
+				width: 668px;
+				height: 29.6px;
+				font-size: 20px;
+				color: #929190;
+			}
+			
+			.cat-top .login {
+				width: 72px;
+				height: 50px;
+				margin: 20px 10px 0px 0px;
+				font-size: 14px;
+			}
+			
+			.cat-top .nologin {
+				width: 72px;
+				height: 50px;
+				margin: 20px 0px 0px 0px;
+				font-size: 14px;
+			}
+			
+			.cat .cat-tu {
+				height: 273px;
+				float: left;
+				color: #b0b0b0;
+			}
+			
+			.cat-text {
+				position: relative;
+				margin: 0;
+				height: 50px;
+				font-size: 30px;
+				font-weight: 400;
+				color: #757575;
+				border-top: 1px solid #e0e0e0;
+				margin-top: 60px;
+			}
+			
+			.cat-text span {
+				position: absolute;
+				top: -20px;
+				left: 372px;
+				height: 40px;
+				width: 482px;
+				line-height: 40px;
+				text-align: center;
+				display: block;
+				background-color: #f5f5f5;
+			}
+			
+			.rec {
+				width: 1240px;
+				height: 628px;
+				padding: 0;
+			}
+			
+			.clearfix {
+				margin: 0 0 0 -14px;
+				padding: 0;
+			}
+			
+			.item {
+				float: left;
+				width: 234px;
+				height: 300px;
+				padding: 0 20px;
+				margin: 0 0 14px 4px;
+				padding: 0;
+				position: relative;
+				overflow: hidden;
+				list-style: none;
+				background-color: #fff;
+				text-align: center;
+			}
+			
+			.rec ul {
+				display: block;
+				list-style-type: disc;
+				margin-block-start: 1em;
+				margin-block-end: 1em;
+				margin-inline-start: 0px;
+				margin-inline-end: 0px;
+				padding-inline-start: 40px;
+			}
+			
+			.a02 {
+				widows: 214px;
+				height: 18px;
+				text-align: 18px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div id="box">
+				<div class="cat">
+					<div class="con">
+						<div class="cat-wrap">
+							<!--<img class="cat-tu" src="img/02.png" />
+							<div class="cat-top">
+								<h2 class="tip"><b>你的购物车还空的！</b></h2>
+								<p class="desc">登录后将显示您之前加入的商品</p>
+								<a class="login">立即登录</a>
+								<a class="nologin">马上去购物</a>
+							</div>-->
+							
+							
+							<div class="da">
+				<div class="site">
+					<div class="xiao">
+						<div class="site-tu"></div>
+						<p class="site-gw">我的购物车</p>
+						<a class="link" href="register.html">注册</a>
+						<a class="link" href="login.html">登录</a>
+					</div>
+				</div>
+
+				<h1 class="04">小米商城 </h1>
+				<table id="stuff_table">
+					<thead>
+						<tr>
+							<th>商品</th>
+							<th>单价</th>
+							<th>颜色</th>
+							<th>库存</th>
+							<th>好评率</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tr>
+						<td class="name">小米10</td>
+						<td>3699</td>
+						<td>黑色</td>
+						<td>666</td>
+						<td>98%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+					<tr>
+						<td class="name">Redmi K30至尊纪念版</td>
+						<td>1999</td>
+						<td>白色</td>
+						<td>666</td>
+						<td>96%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+					<tr>
+						<td class="name">Redmi K30S至尊纪念版</td>
+						<td>2599</td>
+						<td>白色</td>
+						<td>6667</td>
+						<td>99.9%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+					<tr>
+						<td class="name">Redmi 10X 5G</td>
+						<td>1399</td>
+						<td>蓝色</td>
+						<td>666</td>
+						<td>98%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+					<tr>
+						<td class="name">Redmi 10X 5G</td>
+						<td>2099</td>
+						<td>白色</td>
+						<td>466</td>
+						<td>100%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+					<tr>
+						<td class="name">Redmi K30 5G</td>
+						<td>2099</td>
+						<td>白色</td>
+						<td>1599</td>
+						<td>100%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+					<tr>
+						<td class="name">Redmi K30至尊纪念版</td>
+						<td>1999</td>
+						<td>白色</td>
+						<td>466</td>
+						<td>100%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+					<tr>
+						<td class="name">Note 9 5G</td>
+						<td>1299</td>
+						<td>白色</td>
+						<td>466</td>
+						<td>100%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+					<tr>
+						<td class="name">Note 9 4G</td>
+						<td>999</td>
+						<td>白色</td>
+						<td>466</td>
+						<td>100%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+					<tr>
+						<td class="name">Redmi K30 4G</td>
+						<td>1299</td>
+						<td>白色</td>
+						<td>466</td>
+						<td>100%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+					<tr>
+						<td class="name">Redmi K30 5G</td>
+						<td>1599</td>
+						<td>白色</td>
+						<td>466</td>
+						<td>100%</td>
+						<td align="center">
+							<input type="button" value="加入购物车" onclick="add_shoppingcar(this);" />
+						</td>
+					</tr>
+				</table>
+
+				<h1 class="04">小米商城购物车</h1>
+				<table>
+					<thead>
+						<tr>
+							<th>商品</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>金额</th>
+							<th>删除</th>
+						</tr>
+					</thead>
+					<tbody id="goods">
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3" align="center">总计</td>
+							<td id="total"></td>
+							<td></td>
+						</tr>
+					</tfoot>
+				</table>
+							
+							
+							
+							
+							
+							
+
+							<h2 class="cat-text">
+							<span>为您推荐</span>
+							</h2>
+
+							<div class="rec">
+								<ul class="clearfix">
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+								</ul>
+								<ul class="clearfix">
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+								</ul>
+								<ul class="clearfix">
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+									<li class="item">
+										<a href="#" class="a01">
+											<img src="img/01.png" />
+											<div class="a02">Note 9 Pro</div>
+											<div class="03">1599元起</div>
+										</a>
+									</li>
+								</ul>
+								
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="wx">
+					<ul>
+						<li>
+							<a href="#">预约维修服务</a>
+						</li>
+						<li>
+							<a href="#"> 7天无理由退货 </a>
+						</li>
+						<li>
+							<a href="#">15天免费换货 </a>
+						</li>
+						<li>
+							<a href="#">满99元包邮 </a>
+						</li>
+						<li>
+							<a href="#">520余家售后网点</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col">
+					<dl class="col-links">
+						<dt>帮助中心</dt>
+						<dd>
+							<a href="#">账户管理</a>
+						</dd>
+						<dd>
+							<a href="#">购物指南</a>
+						</dd>
+						<dd>
+							<a href="#">订单操作</a>
+						</dd>
+					</dl>
+					<dl class="col-links">
+						<dt>服务支持</dt>
+						<dd>
+							<a href="#">售后政策</a>
+						</dd>
+						<dd>
+							<a href="#">自助服务</a>
+						</dd>
+						<dd>
+							<a href="#">相关下载</a>
+						</dd>
+					</dl>
+					<dl class="col-links">
+						<dt>线下门店</dt>
+						<dd>
+							<a href="#">小米之家</a>
+						</dd>
+						<dd>
+							<a href="#">服务网点</a>
+						</dd>
+						<dd>
+							<a href="#">授权体验店</a>
+						</dd>
+					</dl>
+					<dl class="col-links">
+						<dt>关于小米</dt>
+						<dd>
+							<a href="#">了解小米</a>
+						</dd>
+						<dd>
+							<a href="#">加入小米</a>
+						</dd>
+						<dd>
+							<a href="#">投资者关系</a>
+						</dd>
+						<dd>
+							<a href="#">企业社会责任</a>
+						</dd>
+						<dd>
+							<a href="#">廉洁举报</a>
+						</dd>
+					</dl>
+					<dl class="col-links">
+						<dt>关注我们</dt>
+						<dd>
+							<a href="#">新浪微博</a>
+						</dd>
+						<dd>
+							<a href="#">官方微信</a>
+						</dd>
+						<dd>
+							<a href="#">联系我们</a>
+						</dd>
+						<dd>
+							<a href="#">公益基金会</a>
+						</dd>
+					</dl>
+					<dl class="col-links">
+						<dt>特色服务</dt>
+						<dd>
+							<a href="#">F 码通道</a>
+						</dd>
+						<dd>
+							<a href="#">礼物码</a>
+						</dd>
+						<dd>
+							<a href="#">防伪查询</a>
+						</dd>
+					</dl>
+					<div class="col-cen">
+						<p class="phone">400-100-5678</p>
+						<p class="p">8:00-18:00（仅收市话费）</p>
+						<a class="rg">人工客服</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</body>
+
+</html>

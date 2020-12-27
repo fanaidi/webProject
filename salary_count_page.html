@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>销售收入统计页面</title>
+
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<!-- <script type="text/javascript" src="back-endPage.js"></script> --> <!-- 后台分页 -->
+<script type="text/javascript" src="js/front-endPage.js"></script><!-- 前台分页 -->
+<script type="text/javascript" src="js/shujv2.js"></script>
+ <script src="./js/echarts.js"></script>
+<link rel="stylesheet" type="text/css" href="css/table.css">
+
+</head>
+<body>
+
+<div id="histroyBox"></div>
+<div id="main" style="width: 100%;height:400px;border: 1px solid #000;padding: 10px;"></div>
+
+<script type="text/javascript">
+    //前台分页的样子
+    $('#histroyBox').CJJTable({
+       'title':["商品名称","单价","日销售数量","销售总额","日期"],//thead中的标题 必填
+       'body':["goodsname","price","dailymount","allsaleprice","Date","customerName"],//tbody td 取值的字段 必填
+       'display':[1,1,1,1,1,2],//隐藏域，1显示，2隐藏 必填
+       'pageNUmber':5,//每页显示的条数 选填
+       'pageLength':data.length,//选填
+       'url':data,//数据源 必填
+       dbTrclick:function(e){//双击tr事件
+        alert(e.find('.taskCode').html())
+       }
+    });
+	// 基于准备好的dom，初始化echarts实例
+	var myChart = echarts.init(document.getElementById('main'));
+	// 指定图表的配置项和数据
+	var option = {
+	    title: {
+	        text: '销售收入统计'  // 柱状图标题，位于柱状图左上角。
+	    },
+	    tooltip: {},
+	    legend: {
+	        data:['销量']  // 此处数据无关紧要，不知道什么原因。
+	    },
+	    xAxis: {
+	        data: ["小米手机","红米手机","电视","笔记本","家电"]  // x轴数据。
+	    },
+	    yAxis: {},
+	    series: [{
+	        name: '销量',  // 柱状图名字，位于柱状图的正上方。
+	        type: 'bar',  // 柱状图。
+	        data: [5000000, 3000000, 360000, 500000, 400000]  // 此处数据，与x轴的数据一一对应。
+	    }]
+	};
+	myChart.setOption(option);
+    //后台分页的样子
+    /*$('#histroyBox').CJJTable({
+        'title':["装点","卸点","运输货物","下单日期"],//thead中的标题 必填
+        'body':["contactName","contactMobliePhone","carrierName","taskNum","taskCustomerExpectPrice","taskCustomerBudgetFreight"],//tbody td 取值的字段 必填
+        'display':[1,1,1,1,2,2],//隐藏域，1显示，2隐藏 必填
+        'pageJson':{
+            "taskId":528710,
+            "pageSize":100,//ajax请求参数中的每页展示数量 选填
+            "token":"yJUmunFeG3REqisYAmCfeA"
+        },
+        'url':'api/quoted/quotedList',//数据源 必填
+        dbTrclick:function(that){ //双击tr事件
+            alert(that.find('.contactName').html())
+        }
+    });*/
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+/*
+* @Author: Marte
+* @Date:   2018-12-07 10:42:11
+* @Last Modified by:   Marte
+* @Last Modified time: 2018-12-10 14:47:33
+*/
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd{
+    margin: 0;
+    padding: 0;
+}
+ul,ol{
+    list-style:none;
+}
+input{
+    outline: none;
+    border:none;
+}
+img{
+    display: block;
+    border:none;
+    outline:none;
+}
+a{
+    text-decoration: none;
+    outline:none;
+}
+.clear:after{
+    content:"";
+    display: block;
+    clear:both;
+}
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+
+.productTitle,.list,.total{
+    width: 850px;
+    margin:0 auto;
+}
+.productTitle,.total{
+    height:40px;
+    line-height: 40px;
+    background-color: #ddd;
+}
+.productTitle{
+    border-top:1px solid red;
+}
+.total{
+    border-bottom:1px solid red;
+}
+
+.check,.all{
+    width:80px;
+    text-align:center;
+}
+.info{
+    width:300px;
+}
+.pic{
+    width:80px;
+    text-align:center;
+}
+.num{
+    width:150px;
+    padding:0 20px;
+    text-align:center;
+}
+.rmb{
+    width:100px;
+    text-align:center;
+}
+.handle{
+    width:100px;
+    text-align:center;
+}
+.shop{
+    height:40px;
+    line-height:40px;
+    background-color:#fff;
+    border-bottom:1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding-left: 20px;
+}
+.product{
+    padding:20px 0;
+    border-bottom:1px dashed green;
+    background-color:#fbfbfb;
+}
+.product:last-child{
+    border-bottom:none;
+}
+.product .info img{
+    width:80px;
+    float:left;
+}
+.product .info p{
+    width:200px;
+    padding:0 10px;
+    float:left;
+}
+.product .num span,.product .num input{
+    display: inline-block;
+    vertical-align: middle;
+}
+.product .num span{
+    width:30px;
+    height:30px;
+    line-height:30px;
+    background-color:#ddd;
+    cursor:pointer;
+}
+.product .num input{
+    width:30px;
+    height:30px;
+    line-height:30px;
+    text-align:center;
+}

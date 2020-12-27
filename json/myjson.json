@@ -1,0 +1,24 @@
+{
+"vip":[
+	{
+	"vipname":"张三",
+	"vippass":"123"
+	},
+	{
+	"vipname":"李四",
+	"vippass":"123"
+	},
+	{
+	"vipname":"王五",
+	"vippass":"123"
+	},
+	{
+	"vipname":"user",
+	"vippass":"user"
+	},
+	{
+	"vipname":"admin",
+	"vippass":"admin"
+	}
+]
+}

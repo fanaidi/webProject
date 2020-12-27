@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="./js/jquery-3.5.1.min.js"></script>
+		<script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/dialog.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/dialog.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<link href="./css/basic_layout.css" rel="stylesheet" type="text/css">
+		<link href="./css/common_style.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="./css/dialog.css" />
+		<title>信息管理系统</title>
+		<script type="text/javascript">
+			$(function() {
+				$(".search").click(function(){
+					 myFunction();
+				});
+				function myFunction() {
+					var input, filter, table, tr, td, i;
+					input = document.getElementById("myInput");
+					filter = input.value.toUpperCase();
+					table = document.getElementById("myTable");
+					tr = table.getElementsByTagName("tr");
+				
+					for (i = 0; i < tr.length; i++) {
+						td = tr[i].getElementsByTagName("td")[0];
+						td1 = tr[i].getElementsByTagName("td")[1];
+						td3 = tr[i].getElementsByTagName("td")[3];
+						if (td) {
+							if ((td.innerHTML.toUpperCase().indexOf(filter) > -1) || (td1.innerHTML.toUpperCase().indexOf(filter) > -1) || (
+									td3.innerHTML.toUpperCase().indexOf(filter) > -1)) {
+								tr[i].style.display = "";
+							} else {
+								tr[i].style.display = "none";
+							}
+						}
+					}
+				}
+
+			})
+		</script>
+	</head>
+	<body>
+		<div id="submitForm1">
+			<input type="hidden" name="allIDCheck" value="" id="allIDCheck" />
+			<input type="hidden" name="fangyuanEntity.fyXqName" value="" id="fyXqName" />
+			<div id="container">
+				<div class="ui_content">
+					<div class="ui_text_indent">
+						<div id="box_border">
+							<div id="box_top"></div>
+							<span style="display: block;width: 350px;float: left;margin-top: 10px;font-size: 18px;font-weight: 1000;">商品查询页面</span>
+							<div id="box_bottom">
+								<input type="text" id="myInput"  placeholder="搜索...">
+								<button class="search" type="submit" style="margin-right: 35px;">查询</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui_content">
+					<div class="ui_tb">
+						<table id="myTable" class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+							<tr>
+								<th>编号</th>
+								<th>商品名称</th>
+								<th>商品价格(元)</th>
+								<th>图片URL</th>
+								<th>是否促销</th>
+								<th>类型</th>
+								<th>优惠卷</th>
+								<th>赠品</th>
+								
+							</tr>
+							<tr>
+								<td>001</td>
+								<td>小米10</td>
+								<td>3000</td>
+								<td>.img\xm1.png</td>
+								<td>否</td>
+								<td>手机</td>
+								<td>无</td>
+								<td>有</td>
+							</tr>
+
+							<tr>
+								<td>002</td>
+								<td>小米电视</td>
+								<td>4000</td>
+								<td>.img\xm2.png</td>
+								<td>否</td>
+								<td>电视</td>
+								<td>无</td>
+								<td>无</td>
+							</tr>
+
+							<tr>
+								<td>003</td>
+								<td>红米电视</td>
+								<td>3000</td>
+								<td>.img\hm1.png</td>
+								<td>是</td>
+								<td>电视</td>
+								<td>有</td>
+								<td>无</td>
+							</tr>
+
+							<tr>
+								<td>004</td>
+								<td>小米8</td>
+								<td>1000</td>
+								<td>.img\xm3.png</td>
+								<td>是</td>
+								<td>手机</td>
+								<td>有</td>
+								<td>有</td>
+							</tr>
+
+							<tr>
+								<td>005</td>
+								<td>小米9</td>
+								<td>2000</td>
+								<td>.img\xm4.png</td>
+								<td>是</td>
+								<td>手机</td>
+								<td>有</td>
+								<td>有</td>
+							</tr>
+
+						</table>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+</html>
