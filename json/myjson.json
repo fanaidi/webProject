@@ -1,15 +1,15 @@
 {
 "vip":[
 	{
-	"vipname":"张三",
+	"vipname":"zhangsan",
 	"vippass":"123"
 	},
 	{
-	"vipname":"李四",
+	"vipname":"lisi",
 	"vippass":"123"
 	},
 	{
-	"vipname":"王五",
+	"vipname":"wangwu",
 	"vippass":"123"
 	},
 	{
