@@ -46,7 +46,7 @@
 					}, {
 						description: "姓名",
 						type: "text",
-						name: "Integral",
+						name: "Adress",
 						value: "",
 					}, {
 						description: "电话",
@@ -57,7 +57,7 @@
 					}, {
 						description: "退货地址",
 						type: "text",
-						name: "Adress",
+						name: "FormNumber",
 						value: "",
 
 
@@ -70,7 +70,14 @@
 						if (true) {
 							alert("提交成功\n");
 							var newTr = $(
-								"<tr><td>203502</td><td>001</td><td>商品破损</td><td>EMS</td><td>李白</td><td>15703407182</td><td>天津市天津职业大学</td><td><button type='button'>删除</button></td></tr>"
+								"<tr><td>"+data.VIPId+
+								"</td><td>"+data.VIPName+
+								"</td><td>"+data.PassKey+
+								"</td><td>"+data.Phone+
+								"</td><td>"+data.Adress+
+								"</td><td>"+data.Integral+
+								"</td><td>"+data.FormNumber+
+								"</td><td><button type='button'>删除</button></td></tr>"
 							);
 							$("table").append(newTr);
 							//清空表单数据 传递参数=上述指定的id值
