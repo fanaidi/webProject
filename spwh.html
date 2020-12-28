@@ -13,9 +13,6 @@
 		<title>信息管理系统</title>
 		<script type="text/javascript">
 			$(function() {
-				$(".table-del").on("click", function() {
-					$(this).parent().parent().remove();
-				});
 				$("#openDialog1").dialog({
 					id: "superDialog", //必填,必须和已有id不同
 					title: "新增商品", //对话框的标题 默认值: 我的标题
@@ -79,7 +76,7 @@
 								"</td><td>"+data.type+
 								"</td><td>"+data.coupon+
 								"</td><td>"+data.gift+
-								"</td><td><button type='button'>删除</button></td></tr>"
+								"</td><td><button class='table-del'>删除</button></td></tr>"
 							);
 							$("table").append(newTr);
 							//清空表单数据 传递参数=上述指定的id值
@@ -88,8 +85,11 @@
 				
 					}
 				});
-
-			})
+				$("table").on("click", "button", function() {
+					$(this).parent().parent().remove();
+				});
+			});
+			
 		</script>
 		<style>
 			html,body{
